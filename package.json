@@ -17,6 +17,7 @@
     "concurrently": "^8.2.0"
   },
   "dependencies": {
+    "@apollo/client": "^3.9.4",
     "apollo": "^2.11.1",
     "apollo-server-express": "^3.13.0",
     "dotenv": "^16.4.4",

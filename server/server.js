@@ -11,11 +11,19 @@ const startServer = async () => {
   const app = express();
   const PORT = process.env.PORT || 3001;
 
+  app.use(express.static(path.join(__dirname, '../client/dist'), {
+    setHeaders: (res, filePath) => {
+      if (filePath.endsWith('.js')) {
+        res.setHeader('Content-Type', 'application/javascript');
+      }
+    },
+  }));
+
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
 
   app.use((req, res, next) => {
-    authMiddleware({ req }); 
+    authMiddleware({ req, res }); 
     next();
   });
 
@@ -24,13 +32,9 @@ const startServer = async () => {
     resolvers,
   });
 
-  await server.start(); 
+  await server.start();
 
   server.applyMiddleware({ app });
-
-  if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../client/build')));
-  }
 
   app.use(routes);
 
