@@ -30,6 +30,7 @@ const startServer = async () => {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
+    cache: 'bounded',
   });
 
   await server.start();
