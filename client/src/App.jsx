@@ -1,7 +1,7 @@
 import './App.css';
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client'; 
 import { Outlet } from 'react-router-dom';
-import { setContext } from '@apollo/client/link/context'; // Import setContext
+import { setContext } from '@apollo/client/link/context'; 
 
 import Navbar from './components/Navbar';
 
@@ -15,7 +15,7 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      authorization: authToken ? `Bearer ${authToken}` : '', // Set authorization header if token exists
+      authorization: authToken ? `Bearer ${authToken}` : '', 
     }
   }
 });
