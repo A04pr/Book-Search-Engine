@@ -77,3 +77,15 @@ export const REMOVE_BOOK = gql`
     }
   }
 `;
+
+export const SEARCH_GOOGLE_BOOKS = gql`
+  query SearchGoogleBooks($input: String!) {
+    searchGoogleBooks(input: $input) {
+      bookId
+      title
+      authors
+      description
+      image
+    }
+  }
+`;

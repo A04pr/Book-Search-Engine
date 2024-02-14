@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery, useMutation } from '@apollo/client';
-import { GET_ME, REMOVE_BOOK } from '../utils/queries';
+import { GET_ME, REMOVE_BOOK } from '../utils/mutations';
 import { Container, Card, Button, Row, Col } from 'react-bootstrap';
 import { removeBookId } from '../utils/localStorage';
 import Auth from '../utils/auth';
