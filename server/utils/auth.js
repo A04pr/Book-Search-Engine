@@ -5,6 +5,12 @@ const expiration = '2h';
 
 module.exports = {
   authMiddleware: function ({ req }) {
+    console.log(req)
+    if (!req || !req.headers) {
+      console.log('Invalid request object');
+      return { user: null };
+    }
+
     let token = req.headers.authorization || '';
 
     if (req.headers.authorization) {
