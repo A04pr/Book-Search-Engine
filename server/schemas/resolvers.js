@@ -1,5 +1,5 @@
-const { User } = require('./models');
-const AuthService = require('./auth');
+const { User } = require('../models/User');
+const AuthService = require('../utils/auth');
 const { AuthenticationError } = require('apollo-server-express');
 
 const resolvers = {
