@@ -1,5 +1,5 @@
-const { User } = require('./models'); 
-const jwt = require('jsonwebtoken');
+const { User } = require('./models');
+const AuthService = require('./auth');
 const { AuthenticationError } = require('apollo-server-express');
 
 const resolvers = {
@@ -21,12 +21,16 @@ const resolvers = {
       if (!correctPassword) {
         throw new AuthenticationError('Invalid email or password');
       }
-      const token = jwt.sign({ _id: user._id }, 'your-secret-key', { expiresIn: '1h' });
+
+      const token = AuthService.generateToken(user);
+
       return { token, user };
     },
     addUser: async (_, { username, email, password }) => {
       const user = await User.create({ username, email, password });
-      const token = jwt.sign({ _id: user._id }, 'your-secret-key', { expiresIn: '1h' });
+
+      const token = AuthService.generateToken(user);
+
       return { token, user };
     },
     saveBook: async (_, { bookId, title, authors, description, image, link }, context) => {
